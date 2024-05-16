@@ -17,8 +17,17 @@ public class TemplaterGenerator {
         Script script = new Script()
                 .add("name", "Markdown Lint")
                 .add("on", onSection())
+                .add("env", envSection())
                 .add("jobs", jobsSection());
         return script.asString();
+    }
+
+    private Consumer<Script> envSection() {
+        return env -> {
+            env
+                    .add("GIT_LOGIN", "${{ secrets.GIT_LOGIN }}")
+                    .add("GIT_PASSWORD", "${{ secrets.GIT_PASSWORD }}");
+        };
     }
 
     private Consumer<Script> jobsSection() {
