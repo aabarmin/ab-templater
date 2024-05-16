@@ -32,7 +32,7 @@ public class TemplaterGenerator {
 
     private Consumer<Script> jobsSection() {
         return jobs -> {
-            jobs.add("execute:", ex -> {
+            jobs.add("execute", ex -> {
                 ex
                         .add("runs-on", "ubuntu-latest")
                         .add("steps", steps -> {
