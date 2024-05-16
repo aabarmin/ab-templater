@@ -31,7 +31,7 @@
   },
   {
     "remoteUrl": "https://github.com/aabarmin/epam-microservices-training-2020",
-    "mainBranch": "main",
+    "mainBranch": "master",
     "dependabot": {
       "enabled": "true",
       "ecosystems": [
