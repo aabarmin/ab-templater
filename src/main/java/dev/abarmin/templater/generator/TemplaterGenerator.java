@@ -15,7 +15,7 @@ import static dev.abarmin.templater.generator.WorkflowHelper.onSection;
 public class TemplaterGenerator {
     public String generate(Repository repository) {
         Script script = new Script()
-                .add("name", "Markdown Lint")
+                .add("name", "Run Templater")
                 .add("on", onSection())
                 .add("env", envSection())
                 .add("jobs", jobsSection());
