@@ -27,6 +27,6 @@
         }
       ]
     },
-    "workflows": ["gradle"]
+    "workflows": ["gradle", "templater-run"]
   }
 ]

@@ -11,6 +11,7 @@ public class WorkflowGenerator {
     private final GradleWorkflowGenerator gradleGenerator;
     private final MavenWorkflowGenerator mavenGenerator;
     private final MarkdownLintGenerator markdownLintGenerator;
+    private final TemplaterGenerator templaterGenerator;
 
     public String generate(Repository repository, String workflow) {
         if (StringUtils.equals(workflow, "gradle")) {
@@ -21,6 +22,9 @@ public class WorkflowGenerator {
         }
         if (StringUtils.equals(workflow, "markdown-lint")) {
             return markdownLintGenerator.generate(repository);
+        }
+        if (StringUtils.equals(workflow, "templater-run")) {
+            return templaterGenerator.generate(repository);
         }
         throw new UnsupportedOperationException("Unsupported workflow " + workflow);
     }

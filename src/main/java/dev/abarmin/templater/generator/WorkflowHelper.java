@@ -39,4 +39,12 @@ public class WorkflowHelper {
             });
         };
     }
+
+    public static Consumer<Script> installGradle() {
+        return step -> {
+            step.addItem("name", "Install Gradle", g -> {
+                g.add("uses", "gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5");
+            });
+        };
+    }
 }

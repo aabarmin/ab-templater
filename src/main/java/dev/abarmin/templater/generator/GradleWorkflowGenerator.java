@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.function.Consumer;
 
 import static dev.abarmin.templater.generator.WorkflowHelper.checkoutStep;
+import static dev.abarmin.templater.generator.WorkflowHelper.installGradle;
 import static dev.abarmin.templater.generator.WorkflowHelper.installJava21;
 import static dev.abarmin.templater.generator.WorkflowHelper.onSection;
 
@@ -41,14 +42,6 @@ public class GradleWorkflowGenerator {
                         installGradle().accept(steps);
                         buildGradle().accept(steps);
                     });
-        };
-    }
-
-    private Consumer<Script> installGradle() {
-        return step -> {
-            step.addItem("name", "Install Gradle", g -> {
-                g.add("uses", "gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5");
-            });
         };
     }
 
