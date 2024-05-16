@@ -2,8 +2,8 @@ name: "Run Templater"
 on:
   workflow_dispatch:
 env:
-  GIT_LOGIN: ${{ secrets.GIT_LOGIN }}
-  GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+  GIT_LOGIN: "${{ secrets.GIT_LOGIN }}"
+  GIT_PASSWORD: "${{ secrets.GIT_PASSWORD }}"
 jobs:
   execute:
     runs-on: "ubuntu-latest"
