@@ -1,0 +1,21 @@
+[
+  {
+    "remoteUrl": "https://github.com/aabarmin/ab-examples",
+    "mainBranch": "main",
+    "dependabot": {
+      "enabled": "true",
+      "ecosystems": [
+        {
+          "name": "gradle",
+          "directory": "/",
+          "interval": "weekly"
+        }
+      ]
+    },
+    "workflows": [
+      {
+        "type": "gradle"
+      }
+    ]
+  }
+]
