@@ -1,17 +1,18 @@
 package dev.abarmin.templater.generator;
 
 import dev.abarmin.templater.model.Repository;
-import dev.abarmin.templater.model.Workflow;
 import dev.abarmin.templater.script.Script;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Consumer;
 
-import static dev.abarmin.templater.generator.WorkflowHelper.*;
+import static dev.abarmin.templater.generator.WorkflowHelper.checkoutStep;
+import static dev.abarmin.templater.generator.WorkflowHelper.installJava21;
+import static dev.abarmin.templater.generator.WorkflowHelper.onSection;
 
 @Component
 public class GradleWorkflowGenerator {
-    public String generate(Repository repository, Workflow workflow) {
+    public String generate(Repository repository) {
         final Script script = new Script()
                 .add("name", "Java CI with Gradle")
                 .add("on", onSection(repository))

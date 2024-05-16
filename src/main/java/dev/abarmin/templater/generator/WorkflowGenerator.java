@@ -1,7 +1,6 @@
 package dev.abarmin.templater.generator;
 
 import dev.abarmin.templater.model.Repository;
-import dev.abarmin.templater.model.Workflow;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -13,16 +12,16 @@ public class WorkflowGenerator {
     private final MavenWorkflowGenerator mavenGenerator;
     private final MarkdownLintGenerator markdownLintGenerator;
 
-    public String generate(Repository repository, Workflow workflow) {
-        if (StringUtils.equals(workflow.type(), "gradle")) {
-            return gradleGenerator.generate(repository, workflow);
+    public String generate(Repository repository, String workflow) {
+        if (StringUtils.equals(workflow, "gradle")) {
+            return gradleGenerator.generate(repository);
         }
-        if (StringUtils.equals(workflow.type(), "gradle")) {
-            return mavenGenerator.generate(repository, workflow);
+        if (StringUtils.equals(workflow, "gradle")) {
+            return mavenGenerator.generate(repository);
         }
-        if (StringUtils.equals(workflow.type(), "markdown-lint")) {
+        if (StringUtils.equals(workflow, "markdown-lint")) {
             return markdownLintGenerator.generate(repository);
         }
-        throw new UnsupportedOperationException("Unsupported workflow " + workflow.type());
+        throw new UnsupportedOperationException("Unsupported workflow " + workflow);
     }
 }

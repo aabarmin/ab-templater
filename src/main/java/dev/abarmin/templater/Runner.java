@@ -4,7 +4,6 @@ import dev.abarmin.templater.generator.DependabotGenerator;
 import dev.abarmin.templater.generator.WorkflowGenerator;
 import dev.abarmin.templater.model.Change;
 import dev.abarmin.templater.model.Repository;
-import dev.abarmin.templater.model.Workflow;
 import dev.abarmin.templater.service.RepositoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -16,7 +15,6 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ListBranchCommand;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.transport.CredentialsProvider;
-import org.eclipse.jgit.transport.PushResult;
 import org.eclipse.jgit.transport.RefSpec;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
@@ -83,7 +81,7 @@ public class Runner implements ApplicationRunner {
         Change change = Change.empty();
         change.join(deleteExistingWorkflows(repository));
         createWorkflowsFolder(repository);
-        for (Workflow workflow : repository.workflows()) {
+        for (String workflow : repository.workflows()) {
             change.join(createWorkflow(repository, workflow));
         }
         return change;
@@ -100,16 +98,16 @@ public class Runner implements ApplicationRunner {
     }
 
     @SneakyThrows
-    private Change createWorkflow(Repository repository, Workflow workflow) {
+    private Change createWorkflow(Repository repository, String workflow) {
         final Path workflowFile = getWorkingDirectory(repository)
                 .resolve(".github")
                 .resolve("workflows")
-                .resolve("build-with-" + workflow.type() + ".yml");
+                .resolve("build-with-" + workflow + ".yml");
 
         Files.createFile(workflowFile);
         Files.writeString(workflowFile, workflowGenerator.generate(repository, workflow));
 
-        return Change.singleAdd(".github/workflows/build-with-" + workflow.type() + ".yml");
+        return Change.singleAdd(".github/workflows/build-with-" + workflow + ".yml");
     }
 
     @SneakyThrows
@@ -129,11 +127,11 @@ public class Runner implements ApplicationRunner {
         return change;
     }
 
-    private boolean workflowMatches(Repository repository, Workflow workflow) {
+    private boolean workflowMatches(Repository repository, String workflow) {
         return contentMatches(
                 repository,
                 workflowGenerator.generate(repository, workflow),
-                "./github/workflows/build-with-" + workflow.type() + ".yml"
+                "./github/workflows/build-with-" + workflow + ".yml"
         );
     }
 

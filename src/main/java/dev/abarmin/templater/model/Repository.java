@@ -8,7 +8,7 @@ public record Repository(
         @NonNull String remoteUrl,
         @NonNull String mainBranch,
         @NonNull Dependabot dependabot,
-        @NonNull Collection<Workflow> workflows) {
+        @NonNull Collection<String> workflows) {
 
     public boolean dependabotEnabled() {
         return dependabot.enabled();

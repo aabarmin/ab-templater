@@ -12,13 +12,21 @@
         }
       ]
     },
-    "workflows": [
-      {
-        "type": "gradle"
-      },
-      {
-        "type": "markdown-lint"
-      }
-    ]
+    "workflows": ["gradle", "markdown-lint"]
+  },
+  {
+    "remoteUrl": "https://github.com/aabarmin/telegram-bots",
+    "mainBranch": "main",
+    "dependabot": {
+      "enabled": "true",
+      "ecosystems": [
+        {
+          "name": "gradle",
+          "directory": "/",
+          "interval": "weekly"
+        }
+      ]
+    },
+    "workflows": ["gradle"]
   }
 ]
