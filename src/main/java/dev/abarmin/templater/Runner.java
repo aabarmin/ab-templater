@@ -142,7 +142,7 @@ public class Runner implements ApplicationRunner {
         ghRepository.createPullRequest(
                 "Update from Templater",
                 targetBranch,
-                "main",
+                repository.mainBranch(),
                 "Automatic update of templates by Templater"
         );
     }
