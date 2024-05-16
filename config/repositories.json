@@ -15,7 +15,7 @@
     "workflows": ["gradle", "markdown-lint"]
   },
   {
-    "remoteUrl": "https://github.com/aabarmin/telegram-bots",
+    "remoteUrl": "https://github.com/aabarmin/ab-templater",
     "mainBranch": "main",
     "dependabot": {
       "enabled": "true",

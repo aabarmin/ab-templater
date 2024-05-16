@@ -131,7 +131,7 @@ public class Runner implements ApplicationRunner {
         return contentMatches(
                 repository,
                 workflowGenerator.generate(repository, workflow),
-                "./github/workflows/build-with-" + workflow + ".yml"
+                ".github/workflows/build-with-" + workflow + ".yml"
         );
     }
 
