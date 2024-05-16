@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 public class WorkflowGenerator {
     private final GradleWorkflowGenerator gradleGenerator;
     private final MavenWorkflowGenerator mavenGenerator;
+    private final MarkdownLintGenerator markdownLintGenerator;
 
     public String generate(Repository repository, Workflow workflow) {
         if (StringUtils.equals(workflow.type(), "gradle")) {
@@ -18,6 +19,9 @@ public class WorkflowGenerator {
         }
         if (StringUtils.equals(workflow.type(), "gradle")) {
             return mavenGenerator.generate(repository, workflow);
+        }
+        if (StringUtils.equals(workflow.type(), "markdown-lint")) {
+            return markdownLintGenerator.generate(repository);
         }
         throw new UnsupportedOperationException("Unsupported workflow " + workflow.type());
     }
