@@ -34,6 +34,7 @@ public class MavenWorkflowGenerator {
                 checkoutStep().accept(steps);
                 installJava21().accept(steps);
                 cacheMavenDependencies().accept(steps);
+                buildWithMaven().accept(steps);
             });
         };
     }
