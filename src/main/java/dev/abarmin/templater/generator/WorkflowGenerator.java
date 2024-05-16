@@ -17,7 +17,7 @@ public class WorkflowGenerator {
         if (StringUtils.equals(workflow, "gradle")) {
             return gradleGenerator.generate(repository);
         }
-        if (StringUtils.equals(workflow, "gradle")) {
+        if (StringUtils.equals(workflow, "maven")) {
             return mavenGenerator.generate(repository);
         }
         if (StringUtils.equals(workflow, "markdown-lint")) {
