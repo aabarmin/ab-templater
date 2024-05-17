@@ -67,6 +67,7 @@ public class GradleWorkflowGenerator implements WorkflowGenerator {
                     .add("permissions", p -> {
                         p.add("contents", "write");
                     })
+                    .add("if", "github.event_name == 'push'")
                     .add("steps", steps -> {
                         checkoutStep().accept(steps);
                         installJava().accept(steps);
