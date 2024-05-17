@@ -2,16 +2,20 @@ package dev.abarmin.templater.generator;
 
 import dev.abarmin.templater.model.Repository;
 import dev.abarmin.templater.script.Script;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Consumer;
 
 import static dev.abarmin.templater.generator.WorkflowHelper.checkoutStep;
-import static dev.abarmin.templater.generator.WorkflowHelper.installJava21;
+import static dev.abarmin.templater.generator.WorkflowHelper.installJava;
 import static dev.abarmin.templater.generator.WorkflowHelper.onSection;
 
-@Component
-public class MavenWorkflowGenerator {
+@RequiredArgsConstructor
+public abstract class MavenWorkflowGenerator implements WorkflowGenerator {
+    private final int jdkVersion;
+
+    @Override
     public String generate(Repository repository) {
         final Script script = new Script()
                 .add("name", "Java CI with Maven")
@@ -32,8 +36,9 @@ public class MavenWorkflowGenerator {
             job.add("runs-on", "ubuntu-latest");
             job.add("steps", steps -> {
                 checkoutStep().accept(steps);
-                installJava21().accept(steps);
+                installJava(jdkVersion).accept(steps);
                 cacheMavenDependencies().accept(steps);
+                buildWithMaven().accept(steps);
             });
         };
     }

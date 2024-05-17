@@ -28,5 +28,20 @@
       ]
     },
     "workflows": ["gradle", "templater-run"]
+  },
+  {
+    "remoteUrl": "https://github.com/aabarmin/epam-microservices-training-2020",
+    "mainBranch": "master",
+    "dependabot": {
+      "enabled": "true",
+      "ecosystems": [
+        {
+          "name": "maven",
+          "directory": "/",
+          "interval": "weekly"
+        }
+      ]
+    },
+    "workflows": ["maven-jdk8"]
   }
 ]

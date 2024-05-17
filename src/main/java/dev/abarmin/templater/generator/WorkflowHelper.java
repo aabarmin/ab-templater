@@ -17,12 +17,16 @@ public class WorkflowHelper {
         };
     }
 
-    public static Consumer<Script> installJava21() {
+    public static Consumer<Script> installJava() {
+        return installJava(21);
+    }
+
+    public static Consumer<Script> installJava(int version) {
         return step -> {
             step.addItem("name", "Install JDK 21", c -> {
                 c.add("uses", "actions/setup-java@v4");
                 c.add("with", with -> {
-                    with.add("java-version", "21");
+                    with.add("java-version", String.valueOf(version));
                     with.add("distribution", "corretto");
                 });
             });
