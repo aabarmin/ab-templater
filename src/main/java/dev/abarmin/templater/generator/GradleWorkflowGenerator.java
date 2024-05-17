@@ -2,17 +2,24 @@ package dev.abarmin.templater.generator;
 
 import dev.abarmin.templater.model.Repository;
 import dev.abarmin.templater.script.Script;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Consumer;
 
 import static dev.abarmin.templater.generator.WorkflowHelper.checkoutStep;
 import static dev.abarmin.templater.generator.WorkflowHelper.installGradle;
-import static dev.abarmin.templater.generator.WorkflowHelper.installJava21;
+import static dev.abarmin.templater.generator.WorkflowHelper.installJava;
 import static dev.abarmin.templater.generator.WorkflowHelper.onSection;
 
 @Component
-public class GradleWorkflowGenerator {
+public class GradleWorkflowGenerator implements WorkflowGenerator {
+    @Override
+    public boolean supports(String workflowType) {
+        return StringUtils.equalsIgnoreCase(workflowType, "gradle");
+    }
+
+    @Override
     public String generate(Repository repository) {
         final Script script = new Script()
                 .add("name", "Java CI with Gradle")
@@ -38,7 +45,7 @@ public class GradleWorkflowGenerator {
                     })
                     .add("steps", steps -> {
                         checkoutStep().accept(steps);
-                        installJava21().accept(steps);
+                        installJava().accept(steps);
                         installGradle().accept(steps);
                         buildGradle().accept(steps);
                     });
@@ -62,7 +69,7 @@ public class GradleWorkflowGenerator {
                     })
                     .add("steps", steps -> {
                         checkoutStep().accept(steps);
-                        installJava21().accept(steps);
+                        installJava().accept(steps);
                         submitDependencies().accept(steps);
                     });
         };

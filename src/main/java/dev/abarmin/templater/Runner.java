@@ -1,7 +1,7 @@
 package dev.abarmin.templater;
 
+import dev.abarmin.templater.generator.DelegatingWorkflowGenerator;
 import dev.abarmin.templater.generator.DependabotGenerator;
-import dev.abarmin.templater.generator.WorkflowGenerator;
 import dev.abarmin.templater.model.Change;
 import dev.abarmin.templater.model.Repository;
 import dev.abarmin.templater.service.RepositoryService;
@@ -35,7 +35,7 @@ import java.util.Collection;
 public class Runner implements ApplicationRunner {
     private final RepositoryService repositoryService;
     private final DependabotGenerator dependabotGenerator;
-    private final WorkflowGenerator workflowGenerator;
+    private final DelegatingWorkflowGenerator workflowGenerator;
     private final CredentialsProvider credentialsProvider;
     private final GitHub gitHub;
 
@@ -202,7 +202,7 @@ public class Runner implements ApplicationRunner {
         final Path dependabotPath = githubFolder.resolve("dependabot.yml");
         Files.deleteIfExists(dependabotPath);
         Files.createFile(dependabotPath);
-        Files.writeString(dependabotPath, dependabotGenerator.generate(repository.dependabot()));
+        Files.writeString(dependabotPath, dependabotGenerator.generate(repository));
         return Change.singleAdd(".github/dependabot.yml");
     }
 
@@ -258,7 +258,7 @@ public class Runner implements ApplicationRunner {
     private boolean dependabotMatches(Repository repository) {
         return contentMatches(
                 repository,
-                dependabotGenerator.generate(repository.dependabot()),
+                dependabotGenerator.generate(repository),
                 ".github/dependabot.yml");
     }
 

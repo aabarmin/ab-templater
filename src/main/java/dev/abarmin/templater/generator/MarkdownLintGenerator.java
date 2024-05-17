@@ -2,6 +2,7 @@ package dev.abarmin.templater.generator;
 
 import dev.abarmin.templater.model.Repository;
 import dev.abarmin.templater.script.Script;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Consumer;
@@ -10,7 +11,14 @@ import static dev.abarmin.templater.generator.WorkflowHelper.checkoutStep;
 import static dev.abarmin.templater.generator.WorkflowHelper.onSection;
 
 @Component
-public class MarkdownLintGenerator {
+public class MarkdownLintGenerator implements WorkflowGenerator {
+
+    @Override
+    public boolean supports(String workflowType) {
+        return StringUtils.equalsIgnoreCase(workflowType, "markdown-lint");
+    }
+
+    @Override
     public String generate(Repository repository) {
         Script script = new Script()
                 .add("name", "Markdown Lint")

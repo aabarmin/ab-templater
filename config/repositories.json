@@ -42,6 +42,6 @@
         }
       ]
     },
-    "workflows": ["maven"]
+    "workflows": ["maven-jdk8"]
   }
 ]

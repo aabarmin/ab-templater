@@ -8,8 +8,7 @@ import java.util.function.Consumer;
 
 import static dev.abarmin.templater.generator.WorkflowHelper.checkoutStep;
 import static dev.abarmin.templater.generator.WorkflowHelper.installGradle;
-import static dev.abarmin.templater.generator.WorkflowHelper.installJava21;
-import static dev.abarmin.templater.generator.WorkflowHelper.onSection;
+import static dev.abarmin.templater.generator.WorkflowHelper.installJava;
 
 @Component
 public class TemplaterGenerator {
@@ -37,7 +36,7 @@ public class TemplaterGenerator {
                         .add("runs-on", "ubuntu-latest")
                         .add("steps", steps -> {
                             checkoutStep().accept(steps);
-                            installJava21().accept(steps);
+                            installJava().accept(steps);
                             installGradle().accept(steps);
                             runTemplater().accept(steps);
                         });

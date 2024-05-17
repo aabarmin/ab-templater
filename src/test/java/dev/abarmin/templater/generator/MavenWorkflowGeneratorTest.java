@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class MavenWorkflowGeneratorTest {
-    private MavenWorkflowGenerator generator = new MavenWorkflowGenerator();
+    private MavenWorkflowGenerator generator = new MavenJdk8WorkflowGenerator();
 
     @Test
     void name() {
