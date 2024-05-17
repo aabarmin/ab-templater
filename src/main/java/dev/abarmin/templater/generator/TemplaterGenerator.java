@@ -2,6 +2,7 @@ package dev.abarmin.templater.generator;
 
 import dev.abarmin.templater.model.Repository;
 import dev.abarmin.templater.script.Script;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Consumer;
@@ -11,7 +12,13 @@ import static dev.abarmin.templater.generator.WorkflowHelper.installGradle;
 import static dev.abarmin.templater.generator.WorkflowHelper.installJava;
 
 @Component
-public class TemplaterGenerator {
+public class TemplaterGenerator implements WorkflowGenerator {
+    @Override
+    public boolean supports(String workflowType) {
+        return StringUtils.equalsIgnoreCase(workflowType, "templater-run");
+    }
+
+    @Override
     public String generate(Repository repository) {
         Script script = new Script()
                 .add("name", "Run Templater")
