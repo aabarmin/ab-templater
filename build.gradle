@@ -30,7 +30,7 @@ dependencies {
 	implementation 'commons-io:commons-io:2.15.1'
 	implementation 'org.eclipse.jgit:org.eclipse.jgit:6.9.0.202403050737-r'
 	implementation 'org.apache.commons:commons-lang3'
-	implementation 'org.kohsuke:github-api:1.321'
+	implementation 'org.kohsuke:github-api:1.322'
 
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
