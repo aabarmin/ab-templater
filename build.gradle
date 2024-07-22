@@ -28,7 +28,7 @@ dependencies {
 	implementation 'com.fasterxml.jackson.core:jackson-core'
 	implementation 'com.google.guava:guava:33.2.1-jre'
 	implementation 'commons-io:commons-io:2.16.1'
-	implementation 'org.eclipse.jgit:org.eclipse.jgit:6.9.0.202403050737-r'
+	implementation 'org.eclipse.jgit:org.eclipse.jgit:6.10.0.202406032230-r'
 	implementation 'org.apache.commons:commons-lang3'
 	implementation 'org.kohsuke:github-api:1.323'
 
